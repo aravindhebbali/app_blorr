@@ -24,5 +24,15 @@ library(utils)
 
 shinyServer(function(input, output, session) {
   
+  source("logic/logic_dataoptions.R", local = T)
+  source("logic/logic_upload.R", local = T)
+  source("logic/logic_transform2.R", local = T)
+  source("logic/logic_select.R", local = T)
+  source("logic/logic_filter.R", local = T)
+  source("logic/logic_screen.R", local = T)
+  source("logic/logic_sample.R", local = T)
+  source("logic/logic_partition.R", local = T)
+  source("logic/logic_view.R", local = T)
+  source("logic/logic_regress.R", local = T)
   
 })
