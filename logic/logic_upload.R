@@ -147,7 +147,7 @@ observeEvent(input$mtcars_data, {
 })
 
 observeEvent(input$hsb_data, {
-  sampdata$s <- hsb
+  sampdata$s <- blorr::hsb2
 })
 
 observeEvent(input$mpg_data, {
