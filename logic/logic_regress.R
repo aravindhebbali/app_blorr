@@ -1,12 +1,15 @@
-d_regress <- eventReactive(input$submit_regress, {
-	# validate(need((input$regress_fmla != ''), 'Please specify model'))
+source('helpers/model-fit-stats.R')
+
+model <- eventReactive(input$submit_regress, {
   data <- final_split$train
-  k <- blr_regress(input$regress_fmla, data = data)
+  k <- glm(input$regress_fmla, data = data, family = binomial(link = "logit"))
   k
 })
 
-model <- reactive({
-	d_regress()
+d_regress <- eventReactive(input$submit_regress, {
+  data <- final_split$train
+  k <- blr_regress(input$regress_fmla, data = data)
+  k
 })
 
 r1_title <- eventReactive(input$submit_regress, {
@@ -22,12 +25,17 @@ output$regress_out <- renderPrint({
 })
 
 
-# main regression
-all_use_n <- eventReactive(input$submit_regress, {
-  k <- model()
-  object <- k$model
-  formul <- formula(object)  
-  data <- final_split$train
-  n <- lm(formul, data = data)
-  n
+# model fit statistics
+result <- eventReactive(input$submit_mfs, {
+  if (input$mfs_use_prev) {
+    k <- model()
+  } else {
+    data <- final_split$train
+    k <- glm(input$mfs_fmla, data = data, family = binomial(link = "logit"))
+  }
+  return(blr_model_fit_stats(k))
+})
+
+output$mfs <- renderPrint({
+  result()
 })
