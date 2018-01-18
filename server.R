@@ -1,5 +1,7 @@
 library(blorr)
 library(caret)
+library(cli)
+library(clisymbols)
 library(descriptr)
 library(dplyr)
 library(ggplot2)
@@ -34,5 +36,6 @@ shinyServer(function(input, output, session) {
   source("logic/logic_partition.R", local = T)
   source("logic/logic_view.R", local = T)
   source("logic/logic_regress.R", local = T)
+  source("logic/logic_bivar.R", local = T)
   
 })
