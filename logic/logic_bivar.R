@@ -22,6 +22,13 @@ observe({
 	updateSelectInput(session, inputId = "var_segdist",
     choices = names(final_split$train))
 
+	updateSelectInput(session, inputId = "resp_2wayseg",
+    choices = names(final_split$train))
+	updateSelectInput(session, inputId = "var1_2wayseg",
+    choices = names(final_split$train))
+	updateSelectInput(session, inputId = "var2_2wayseg",
+    choices = names(final_split$train))
+
 })
 
 bivar <- eventReactive(input$submit_bivar, {
@@ -44,6 +51,12 @@ seg_dist <- eventReactive(input$submit_segdist, {
 		response = input$resp_segdist, predictor = input$var_segdist)
 })
 
+twowayseg <- eventReactive(input$submit_2wayseg, {
+	blorr::blr_twoway_segment(data = final_split$train,
+		response = input$resp_2wayseg, variable_1 = input$var1_2wayseg,
+		variable_2 = input$var2_2wayseg)
+})
+
 output$bivar_out <- renderPrint({
 	bivar()
 })
@@ -62,4 +75,8 @@ output$segdist_out <- renderPrint({
 
 output$segdist_plot <- renderPlot({
 	plot(seg_dist())
+})
+
+output$twowayseg_out <- renderPrint({
+	twowayseg()
 })
