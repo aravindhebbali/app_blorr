@@ -20,7 +20,7 @@ tabPanel('Model Building', value = 'tab_model_home',
 			column(3),
 
 			column(4, align = 'left',
-				h5('Regression')
+				h5('Bivariate Analysis')
 			),
 
 			column(2, align = 'left',
@@ -40,7 +40,7 @@ tabPanel('Model Building', value = 'tab_model_home',
 			column(3),
 
 			column(4, align = 'left',
-				h5('Residual Diagnostics')
+				h5('Regression')
 			),
 
 			column(2, align = 'left',
@@ -60,7 +60,7 @@ tabPanel('Model Building', value = 'tab_model_home',
 			column(3),
 
 			column(4, align = 'left',
-				h5('Heteroskedasticity Tests')
+				h5('Model Fit Statistics')
 			),
 
 			column(2, align = 'left',
@@ -80,7 +80,7 @@ tabPanel('Model Building', value = 'tab_model_home',
 			column(3),
 
 			column(4, align = 'left',
-				h5('Collinearity Diagnostics')
+				h5('Variable Selection')
 			),
 
 			column(2, align = 'left',
@@ -100,7 +100,7 @@ tabPanel('Model Building', value = 'tab_model_home',
 			column(3),
 
 			column(4, align = 'left',
-				h5('Measures of Influence')
+				h5('Model Validation')
 			),
 
 			column(2, align = 'left',
@@ -120,32 +120,12 @@ tabPanel('Model Building', value = 'tab_model_home',
 			column(3),
 
 			column(4, align = 'left',
-				h5('Model Fit Assessment')
+				h5('Residual Diagnostics')
 			),
 
 			column(2, align = 'left',
 					actionButton(
 						inputId = 'model_fit_click',
-						label = 'Click Here',
-						width = '120px'
-					)
-			),
-
-			column(3),
-
-			br(),
-			br(),
-			br(),
-
-			column(3),
-
-			column(4, align = 'left',
-				h5('Variable Contribution')
-			),
-
-			column(2, align = 'left',
-					actionButton(
-						inputId = 'model_varcontrib_click',
 						label = 'Click Here',
 						width = '120px'
 					)
