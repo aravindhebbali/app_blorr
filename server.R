@@ -39,5 +39,6 @@ shinyServer(function(input, output, session) {
   source("logic/logic_bivar.R", local = T)
   source("logic/logic_varsel.R", local = T)
   source("logic/logic_validation.R", local = T)
+  source("logic/logic_residual_diagnostics.R", local = T)
   
 })
