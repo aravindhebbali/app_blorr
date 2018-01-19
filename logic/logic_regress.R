@@ -1,4 +1,5 @@
 source('helpers/model-fit-stats.R')
+source('helpers/multi-model-fit-stats.R')
 
 model <- eventReactive(input$submit_regress, {
   data <- final_split$train
@@ -38,4 +39,17 @@ result <- eventReactive(input$submit_mfs, {
 
 output$mfs <- renderPrint({
   result()
+})
+
+
+# multiple model fit statistics
+mmfs_result <- eventReactive(input$submit_mmfs, {
+  data <- final_split$train
+  m1 <- glm(input$mmfs_fmla_1, data = data, family = binomial(link = "logit"))
+  m2 <- glm(input$mmfs_fmla_2, data = data, family = binomial(link = "logit"))
+  blr_multi_model_fit_stats(m1, m2)
+})
+
+output$mmfs <- renderPrint({
+  mmfs_result()
 })
