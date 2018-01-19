@@ -23,7 +23,7 @@ tabPanel('WoE & IV', value = 'tab_woe_iv',
              selectInput("resp_woe", label = '', 
                          choices = '', selected = '')),
       bsTooltip("resp_woe", "Select response variable.",
-                "left", options = list(container = "body")))
+                "left", options = list(container = "body"))
       
     ),
     
@@ -54,5 +54,6 @@ tabPanel('WoE & IV', value = 'tab_woe_iv',
       )
     )
 
+  )  
 
 )

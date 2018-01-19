@@ -5,7 +5,7 @@ tabPanel('Bivariate Analysis', value = 'tab_bivar_analysis',
     fluidRow(
       
       column(6, align = 'left',
-        h4('Levene Test')
+        h4('Bivariate Analysis')
       ),
       column(6, align = 'right',
         actionButton(inputId='bivarlink1', label="Help", icon = icon("question-circle"),

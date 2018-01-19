@@ -1,3 +1,5 @@
+source('helpers/segment_dist.R')
+
 observe({
 
 	updateSelectInput(session, inputId = "resp_bivar",
@@ -13,6 +15,11 @@ observe({
 	updateSelectInput(session, inputId = "resp_woe2",
     choices = names(final_split$train))
 	updateSelectInput(session, inputId = "var_woe2",
+    choices = names(final_split$train))
+
+	updateSelectInput(session, inputId = "resp_segdist",
+    choices = names(final_split$train))
+	updateSelectInput(session, inputId = "var_segdist",
     choices = names(final_split$train))
 
 })
@@ -32,6 +39,11 @@ woe_iv_2 <- eventReactive(input$submit_woe2, {
 		response = input$resp_woe2, input$var_woe2)
 })
 
+seg_dist <- eventReactive(input$submit_segdist, {
+	blr_segment_dist(data = final_split$train,
+		response = input$resp_segdist, predictor = input$var_segdist)
+})
+
 output$bivar_out <- renderPrint({
 	bivar()
 })
@@ -42,4 +54,12 @@ output$woe_out <- renderPrint({
 
 output$woe2_out <- renderPrint({
 	woe_iv_2()
+})
+
+output$segdist_out <- renderPrint({
+	seg_dist()
+})
+
+output$segdist_plot <- renderPlot({
+	plot(seg_dist())
 })
